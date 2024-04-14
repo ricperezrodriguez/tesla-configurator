@@ -1,9 +1,13 @@
 <h2>Step 1: Choose your Model and color</h2>
 
-<form *ngIf="vm$ | async as vm" [formGroup]="formStepOne" class="form">
+<form
+  *ngIf="vm$ | async as vm; else loading"
+  [formGroup]="formStepOne"
+  class="form"
+>
   <div>
     <label>Model:</label>
-    <select name="select" formControlName="model">
+    <select name="select" formControlName="model" id="modelSelect">
       <option [value]="null" disabled selected>Choose...</option>
       @for (carModel of vm.modelsItems; track carModel) {
       <option [value]="carModel.code">
@@ -16,7 +20,7 @@
   @if(formStepOne.controls.model.value !== null) {
   <div>
     <label>Color:</label>
-    <select name="select" formControlName="color">
+    <select name="select" formControlName="color" id="colorSelect">
       <option [value]="null" disabled selected>Choose...</option>
       @for (color of vm.colorsItems; track color) {
       <option [value]="color.code">
@@ -27,3 +31,7 @@
   </div>
   }
 </form>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

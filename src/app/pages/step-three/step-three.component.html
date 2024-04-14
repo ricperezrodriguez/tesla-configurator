@@ -1,6 +1,6 @@
 <h2>Step 3: Summary</h2>
 
-<ng-container *ngIf="vm$ | async as vm">
+<ng-container *ngIf="vm$ | async as vm; else loading">
   <h3>Your Tesla {{ vm.car.carModel?.description }}</h3>
 
   <div class="summary">
@@ -31,3 +31,7 @@
   </div>
   <hr />
 </ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
