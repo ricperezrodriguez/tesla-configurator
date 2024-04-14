@@ -1,0 +1,30 @@
+<h2>Step 2: Select your config and options</h2>
+
+<form *ngIf="vm$ | async as vm" [formGroup]="formStepTwo" class="form">
+  <div>
+    <label>Config:</label>
+    <select name="select" id="configSelect" formControlName="config">
+      <option [value]="null" disabled selected>Choose...</option>
+      @for (c of vm.configs; track c) {
+      <option [value]="c.id">{{ c.description }}</option>
+      }
+    </select>
+  </div>
+
+  <div *ngIf="configSelected">
+    <p>
+      {{ configSelected | rangeSpeed }} - Cost:
+      {{ configSelected.price | currency }}
+    </p>
+  </div>
+
+  <div *ngIf="vm.towHitch">
+    <label for="includeTow">Tow hitch?</label>
+    <input type="checkbox" id="includeTow" formControlName="towHitch" />
+  </div>
+
+  <div *ngIf="vm.yoke">
+    <label for="includeYoke">Yoke steering wheel?</label>
+    <input type="checkbox" id="includeYoke" formControlName="yoke" />
+  </div>
+</form>

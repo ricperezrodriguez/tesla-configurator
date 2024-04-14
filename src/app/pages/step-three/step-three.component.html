@@ -1,0 +1,33 @@
+<h2>Step 3: Summary</h2>
+
+<ng-container *ngIf="vm$ | async as vm">
+  <h3>Your Tesla {{ vm.car.carModel?.description }}</h3>
+
+  <div class="summary">
+    <span class="bold">{{ vm.car.config?.description }}</span>
+    <span>{{ vm.car.config?.price | currency }}</span>
+
+    <span>{{ vm.car.config | rangeSpeed }}</span>
+    <span></span>
+
+    <span class="bold">{{ vm.car.color?.description }}</span>
+    <span>{{ vm.car.color?.price | currency }}</span>
+
+    <ng-container *ngIf="vm.car.option?.towHitch">
+      <span class="bold">Tow Hitch Package</span>
+      <span>{{ 1000 | currency }}</span>
+    </ng-container>
+
+    <ng-container *ngIf="vm.car.option?.yoke">
+      <span class="bold">Yoke Package</span>
+      <span>{{ 1000 | currency }}</span>
+    </ng-container>
+  </div>
+
+  <hr />
+  <div class="summary">
+    <span class="bold">TOTAL COST</span>
+    <span>{{ vm.total | currency }}</span>
+  </div>
+  <hr />
+</ng-container>
